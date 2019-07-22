@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
 })
 export class UserListComponent implements OnInit {
 
-  users$: Observable<User>;
+  users$: Observable<User[]>;
   page = 1;
 
   constructor(private userService: UserService) { }
@@ -20,14 +20,14 @@ export class UserListComponent implements OnInit {
     this.users$ = this.userService.getUserList(this.page);
   }
 
-  back() {
+  back(): void {
     if (this.page > 1) {
       this.page--;
       this.users$ = this.userService.getUserList(this.page);
     }
   }
 
-  next() {
+  next(): void {
     this.page++;
     this.users$ = this.userService.getUserList(this.page);
   }

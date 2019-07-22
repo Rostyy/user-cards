@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-user-details',
@@ -12,7 +14,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  userDetails$: any;
+  userDetails$: Observable<User>;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +26,8 @@ export class UserDetailsComponent implements OnInit {
     this.userDetails$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.userService.getUserById(params.get('userId'))
-      )
+      ),
+      shareReplay<User>()
     );
   }
 
