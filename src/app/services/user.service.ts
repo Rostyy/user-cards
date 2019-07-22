@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { shareReplay, pluck, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -11,6 +11,9 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
+  // cached usersList
+  userList = [];
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -19,8 +22,10 @@ export class UserService {
    * @returns {Observable<User>}
    */
   getUserList(pageNumber: number): Observable<User> {
-    return this.http.get<User>(`${environment.baseUrl}?page=${pageNumber}`).pipe(
+    return this.userList[pageNumber - 1] ? of(this.userList[pageNumber - 1]) :
+    this.http.get<User>(`${environment.baseUrl}?page=${pageNumber}`).pipe(
       pluck('data'),
+      tap((users: any) => this.userList.push(users)),
       shareReplay<User>()
     );
   }

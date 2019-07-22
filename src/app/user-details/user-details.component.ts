@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
+import { switchMap } from 'rxjs/operators';
 
 import { UserService } from '../services/user.service';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-details',
