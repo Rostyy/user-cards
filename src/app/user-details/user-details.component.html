@@ -1,4 +1,5 @@
 <button (click)="location.back()">Back</button>
+<mini-loader *ngIf="!(userDetails$ | async)"></mini-loader>
 <div *ngIf="(userDetails$ | async) as user" class="card">
   <img src="{{user.avatar}}" alt="">
   <div class="info">

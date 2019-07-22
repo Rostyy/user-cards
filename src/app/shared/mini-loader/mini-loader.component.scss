@@ -1,0 +1,31 @@
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+:host(.small) .loader {
+  width: 18px;
+  height: 18px;
+  border-top-width: 5px;
+  border-bottom-width: 5px;
+}
+
+:host(.left) .loader-wrapper {
+  justify-content: flex-start;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #1da1f2;
+  border-bottom: 8px solid #1da1f2;
+  width: 35px;
+  height: 35px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -5,6 +5,7 @@
       <span class="page">{{page}}</span>
       <button (click)="next()">Next</button>
     </div>
+    <mini-loader *ngIf="!(users$ | async)"></mini-loader>
     <div *ngFor="let user of (users$ | async)" [routerLink]="['/user', user.id]" class="card">
       <img src="{{user.avatar}}" alt="">
       <div class="info">
