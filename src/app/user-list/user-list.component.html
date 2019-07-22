@@ -1,9 +1,14 @@
 <div class="wrapper">
-  <div class="user-list">
+  <div>
+    <div class="buttons">
+      <button (click)="back()" [disabled]="page===1">Back</button>
+      <span class="page">{{page}}</span>
+      <button (click)="next()">Next</button>
+    </div>
     <div *ngFor="let user of (users$ | async)" [routerLink]="['/user', user.id]" class="card">
       <img src="{{user.avatar}}" alt="">
       <div class="info">
-        <div>{{user.first_name}} {{user.last_name}}</div>
+        <div class="name">{{user.first_name}} {{user.last_name}}</div>
         <div>{{user.email}}</div>
       </div>
     </div>
