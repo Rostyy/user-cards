@@ -3,7 +3,7 @@
     <div class="buttons">
       <button (click)="back()" [disabled]="page===1">Back</button>
       <span class="page">{{page}}</span>
-      <button (click)="next()" [disabled]="!(users$ | async)?.length">Next</button>
+      <button (click)="next()" [disabled]="page === lastPage">Next</button>
     </div>
     <mini-loader *ngIf="!(users$ | async)"></mini-loader>
     <div *ngFor="let user of (users$ | async)" [routerLink]="['/user', user.id]" class="card">
