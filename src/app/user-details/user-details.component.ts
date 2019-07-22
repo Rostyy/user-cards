@@ -4,8 +4,6 @@ import { Location } from '@angular/common';
 
 import { UserService } from '../services/user.service';
 import { switchMap } from 'rxjs/operators';
-// import { User } from '../models/user.model';
-// import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -28,10 +26,6 @@ export class UserDetailsComponent implements OnInit {
         this.userService.getUserById(params.get('userId'))
       )
     );
-
-    this.userDetails$.subscribe((userDetails: any) => {
-      console.log(userDetails);
-    });
   }
 
 }
