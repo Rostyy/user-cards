@@ -13,6 +13,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * get users list
+   * @param {number} pageNumber
+   * @returns {Observable<User>}
+   */
   getUserList(pageNumber: number): Observable<User> {
     return this.http.get<any>(`${environment.baseUrl}?page=${pageNumber}`).pipe(
       pluck('data'),
@@ -20,6 +25,11 @@ export class UserService {
     );
   }
 
+  /**
+   * get user by id
+   * @param {string} userId
+   * @returns {Observable<User>}
+   */
   getUserById(userId: string): Observable<User> {
     return this.http.get<any>(`${environment.baseUrl}/${userId}`).pipe(
       pluck('data'),
