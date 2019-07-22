@@ -38,7 +38,7 @@ export class UserService {
    * @returns {Observable<User>}
    */
   getUserById(userId: string): Observable<User> {
-    return this.userIds[userId] ? of(this.userIds[userId]) :
+    return this.userIds[+userId - 1] ? of(this.userIds[+userId - 1]) :
       this.http.get<any>(`${environment.baseUrl}/${userId}`).pipe(
         pluck('data'),
         tap((user: User) => this.userIds.push(user)),
