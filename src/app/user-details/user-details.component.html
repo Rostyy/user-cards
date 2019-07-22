@@ -1,1 +1,8 @@
-<p>user-details works!</p>
+<button (click)="location.back()">Back</button>
+<div *ngIf="(userDetails$ | async) as user" class="card">
+  <img src="{{user.avatar}}" alt="">
+  <div class="info">
+    <div>{{user.first_name}} {{user.last_name}}</div>
+    <div>{{user.email}}</div>
+  </div>
+</div>

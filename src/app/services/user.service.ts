@@ -14,14 +14,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserList(pageNumber: number): Observable<User> {
-    return this.http.get(`${environment.baseUrl}?page=${pageNumber}`).pipe(
+    return this.http.get<any>(`${environment.baseUrl}?page=${pageNumber}`).pipe(
       pluck('data'),
       shareReplay()
     );
   }
 
   getUserById(userId: string): Observable<User> {
-    return this.http.get(`${environment.baseUrl}/${userId}`).pipe(
+    return this.http.get<any>(`${environment.baseUrl}/${userId}`).pipe(
+      pluck('data'),
       shareReplay()
     );
   }
